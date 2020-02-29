@@ -2,6 +2,12 @@
 Çok amaçlı bir blog scriptidir. Temiz, duyarlı ve kullanıcı dostu bir tasarıma sahiptir. Makalelerinizi, özel sayfalarınızı, kategorilerinizi, kullanıcı yorumlarınızı, gelişmiş ayarlarınızı ve iletişim mesajlarınızı güçlü yönetici paneliyle yönetebilirsin
 
 
+<p>&nbsp;</p>
+
+<p>&Ccedil;ok ama&ccedil;lı bir blog scriptidir.&nbsp;Temiz, duyarlı ve kullanıcı dostu bir tasarıma sahiptir. Makalelerinizi, &ouml;zel sayfalarınızı, kategorilerinizi, kullanıcı yorumlarınızı, gelişmiş ayarlarınızı ve iletişim mesajlarınızı g&uuml;&ccedil;l&uuml; y&ouml;netici paneliyle y&ouml;netebilirsiniz.</p>
+
+<p>&nbsp;</p>
+
 <h2><strong>&Ouml;zellikleri;</strong></h2>
 
 <ol xss="removed">
@@ -22,9 +28,19 @@
 <h2><strong>Kurulumu;</strong></h2>
 
 <ol xss="removed">
-	<li>Aşağıda vereceğim github hesabım &uuml;zerinden indirmiş olduğunuz zip dosyasının i&ccedil;indekileri&nbsp;dışarı &ccedil;ıkartın,</li>
+	<li>İndirmiş olduğunuz zip dosyasının i&ccedil;indekileri&nbsp;dışarı &ccedil;ıkartın,</li>
 	<li>Veritabanı oluşturun,</li>
 	<li><strong>ucretsizblog.sql</strong>&nbsp;dosyasını oluşturduğunuz veritabanına i&ccedil;eri aktar diyerek importlayın,</li>
 	<li>Sırasıyla şu dosyaları a&ccedil;ın&nbsp;<strong>application</strong>-&gt;<strong>config</strong>-&gt;<strong>database.php</strong>&nbsp;dosyasında <strong>10,11,12</strong>. satırları oluşturduğunuz databaseye g&ouml;re d&uuml;zenleyin,</li>
 	<li>Link yapısı otomatik oluştuğu i&ccedil;in başka herhangi bir d&uuml;zenleme yapmanıza gerek yoktur.</li>
 </ol>
+
+<p>&nbsp;</p>
+
+<p><strong>Admin Giriş linki; siteadi.com/panel</strong></p>
+
+<p><strong>admin kullanıcı adı: admin</strong></p>
+
+<p><strong>admin şifre: ali1</strong></p>
+
+<p><strong>giriş yaptıktan sonra değiştirmeyi unutmayın.</strong></p>
