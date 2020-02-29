@@ -1,0 +1,21 @@
+.container {
+    margin-top: 10px;
+}
+.navbar-light .navbar-toggler {
+    color: #000000!important;
+    border-color: #00000000!important;
+}
+.card{
+    margin-bottom: 10px;
+}
+.formpage{
+    margin-bottom: 10px!important;
+}
+footer{
+    background-color: #e7edf3!important;
+}
+.alert-cat {
+    color: #000000;
+    background-color: #f8f9fa;
+    border-color: #dcdcdc;
+}
