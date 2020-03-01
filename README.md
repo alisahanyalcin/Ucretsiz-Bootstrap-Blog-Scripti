@@ -11,7 +11,7 @@
 <h2><strong>&Ouml;zellikleri;</strong></h2>
 
 <ol xss="removed">
-	<li>Sınırız makele yayınlama.</li>
+	<li>Sınırız makale yayınlama.</li>
 	<li>Sınırsız men&uuml; ekleme.</li>
 	<li>Sınırsız kategori ekleme.</li>
 	<li>Sınırsız sayfa oluşturma.</li>
