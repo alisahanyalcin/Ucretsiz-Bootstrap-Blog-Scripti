@@ -640,7 +640,7 @@ class Panel extends CI_Controller {
             );
 
             $this->db->where('id', $id);
-            $this->db->update('menu', $data);
+            $this->db->update('kategoriler', $data);
             $this->session->set_flashdata('result', '<div class="alert alert-success">Başarılı</div>');
             redirect('panel/kategori_duzenle/'.$id);
         }
