@@ -22,11 +22,11 @@
                                 <input type="text" value="<?= $site_title;?>" name="site_title" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Sayfa Başı log</label>
+                                <label>Sayfa Başı Blog</label>
                                 <input type="text" value="<?= $sayfa_basi_blog;?>" name="sayfa_basi_blog" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Random Sayfa Başı log</label>
+                                <label>Random Sayfa Başı Blog</label>
                                 <input type="text" value="<?= $random_sayfa_basi_blog;?>" name="random_sayfa_basi_blog" class="form-control">
                             </div>
                             <div class="form-group">
