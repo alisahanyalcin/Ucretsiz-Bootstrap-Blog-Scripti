@@ -28,7 +28,7 @@ class Welcome extends CI_Controller {
         $config["uri_segment"] = 1;
         $config['use_page_numbers'] = TRUE;
         $this->pagination->initialize($config);
-        $page = ($this->uri->segment(2)) ? $this->uri->segment(1) : 0;
+        $page = ($this->uri->segment(1)) ? $this->uri->segment(1) : 0;
         $data["results"] = $this->UserGetModel->fetch_blog($config["per_page"], $page);
         $data["links"] = $this->pagination->create_links();
         $data['getRastgeleBlog'] = $this->UserGetModel->getRastgeleBlog($limit);
@@ -186,7 +186,7 @@ class Welcome extends CI_Controller {
             $config["uri_segment"] = 1;
             $config['use_page_numbers'] = TRUE;
             $this->pagination->initialize($config);
-            $page = ($this->uri->segment(2)) ? $this->uri->segment(1) : 0;
+            $page = ($this->uri->segment(1)) ? $this->uri->segment(1) : 0;
             $data["results"] = $this->UserGetModel->fetch_arama_blog($kelime,$config["per_page"], $page);
             //$data["links"] = $this->pagination->create_links();
 
