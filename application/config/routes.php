@@ -50,13 +50,13 @@ $route['panel/yorum_gizle/(:num)'] = "Panel/yorum_gizle/$1";
 
 
 //Kullanıcı Tarafı
+$route['(:num)'] = "welcome/index/$1";
 $route['iletisim'] = "welcome/iletisim";
 $route['yorum_yap'] = "welcome/yorum_yap";
 $route['sayfa/(.*)'] = "welcome/sayfa/$1";
 $route['ara'] = "welcome/arama";
 $route['ara/(:num)'] = "welcome/arama/$1";
 $route['(.*)'] = "welcome/detay/$1";
-$route['(:num)'] = "welcome/index/$1";
 
 //sistem tarafı değiştirmeyin.
 $route['default_controller'] = 'welcome';
