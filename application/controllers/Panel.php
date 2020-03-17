@@ -42,8 +42,8 @@ class Panel extends CI_Controller {
             $this->load->view('admin/profil');
             $this->load->view('admin/footer');
         }else{
-            $current_password = $this->input->post('current_password');
-            $new_password = $this->input->post('new_password');
+            $current_password = $this->input->post('current_password', true);
+            $new_password = $this->input->post('new_password', true);
             if (password_verify($current_password, $password1)){
                 if ($current_password != $new_password){
                     $data = ['password' => password_hash($new_password, PASSWORD_DEFAULT)];
@@ -84,15 +84,15 @@ class Panel extends CI_Controller {
             $this->load->view('admin/sistem_ayarlari');
             $this->load->view('admin/footer');
         else:
-            $site_name = $this->input->post('site_name');
-            $site_name_mobil = $this->input->post('site_name_mobil');
-            $site_title = $this->input->post('site_title');
-            $site_description = $this->input->post('site_description');
-            $site_tags = $this->input->post('site_tags');
-            $yorum_oto_onay = $this->input->post('yorum_oto_onay');
-            $sayfa_basi_blog = $this->input->post('sayfa_basi_blog');
-            $random_sayfa_basi_blog = $this->input->post('random_sayfa_basi_blog');
-            $logomu_site_adimi = $this->input->post('logomu_site_adimi');
+            $site_name = $this->input->post('site_name', true);
+            $site_name_mobil = $this->input->post('site_name_mobil', true);
+            $site_title = $this->input->post('site_title', true);
+            $site_description = $this->input->post('site_description', true);
+            $site_tags = $this->input->post('site_tags', true);
+            $yorum_oto_onay = $this->input->post('yorum_oto_onay', true);
+            $sayfa_basi_blog = $this->input->post('sayfa_basi_blog', true);
+            $random_sayfa_basi_blog = $this->input->post('random_sayfa_basi_blog', true);
+            $logomu_site_adimi = $this->input->post('logomu_site_adimi', true);
 
             $config["upload_path"] = "assets/upload/";
             $config['allowed_types'] = '*';
