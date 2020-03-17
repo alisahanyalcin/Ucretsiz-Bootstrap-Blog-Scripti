@@ -4,10 +4,6 @@
 
 <p>&nbsp;</p>
 
-<p>&Ccedil;ok ama&ccedil;lı bir blog scriptidir.&nbsp;Temiz, duyarlı ve kullanıcı dostu bir tasarıma sahiptir. Makalelerinizi, &ouml;zel sayfalarınızı, kategorilerinizi, kullanıcı yorumlarınızı, gelişmiş ayarlarınızı ve iletişim mesajlarınızı g&uuml;&ccedil;l&uuml; y&ouml;netici paneliyle y&ouml;netebilirsiniz.</p>
-
-<p>&nbsp;</p>
-
 <h2><strong>&Ouml;zellikleri;</strong></h2>
 
 <ol xss="removed">
