@@ -21,8 +21,8 @@ class Auth extends CI_Controller {
     }
 
     private function _login(){
-        $user_name = $this->input->post('admin_user_name');
-        $password = $this->input->post('admin_password');
+        $user_name = $this->input->post('admin_user_name', true);
+        $password = $this->input->post('admin_password', true);
 
         $admin = $this->db->get_where('admin', ['user_name' => $user_name])->row_array();
 
