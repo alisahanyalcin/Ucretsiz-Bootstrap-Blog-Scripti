@@ -121,9 +121,9 @@ class Welcome extends CI_Controller {
             $this->load->view('user/iletisim');
             $this->load->view('user/footer');
         else:
-            $mesaage = $this->input->post('mesaage');
-            $mail = $this->input->post('mail');
-            $name = $this->input->post('name');
+            $mesaage = $this->input->post('mesaage', true);
+            $mail = $this->input->post('mail', true);
+            $name = $this->input->post('name', true);
             $data = array(
                 'isim_soyisim' => $name,
                 'mail' => $mail,
