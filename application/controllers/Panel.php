@@ -95,7 +95,7 @@ class Panel extends CI_Controller {
             $logomu_site_adimi = $this->input->post('logomu_site_adimi', true);
 
             $config["upload_path"] = "assets/upload/";
-            $config['allowed_types'] = '*';
+            $config['allowed_types'] = 'jpg|png|jpeg|webp';
             $config['max_size'] = '54000';
             $config['min_height'] = '10';
             $config['min_width'] = '10';
@@ -104,55 +104,55 @@ class Panel extends CI_Controller {
             $site_logo = highlighted_up($config,'site_logo');
             if($site_fav == '<p>You did not select a file to upload.</p>' && $site_logo == '<p>You did not select a file to upload.</p>'):
                 $datasss = array(
-                    'site_adi' => $site_name,
-                    'site_name_mobil' => $site_name_mobil,
-                    'site_baslik' => $site_title,
-                    'site_aciklama' => $site_description,
-                    'site_anahtar_kelimeler' => $site_tags,
-                    'yorum_oto_onay' => $yorum_oto_onay,
-                    'sayfa_basi_blog' => $sayfa_basi_blog,
-                    'random_sayfa_basi_blog' => $random_sayfa_basi_blog,
-                    'logomu_site_adimi' => $logomu_site_adimi
+                    'site_adi' => htmlspecialchars($site_name),
+                    'site_name_mobil' => htmlspecialchars($site_name_mobil),
+                    'site_baslik' => htmlspecialchars($site_title),
+                    'site_aciklama' => htmlspecialchars($site_description),
+                    'site_anahtar_kelimeler' => htmlspecialchars($site_tags),
+                    'yorum_oto_onay' => htmlspecialchars($yorum_oto_onay),
+                    'sayfa_basi_blog' => htmlspecialchars($sayfa_basi_blog),
+                    'random_sayfa_basi_blog' => htmlspecialchars($random_sayfa_basi_blog),
+                    'logomu_site_adimi' => htmlspecialchars($logomu_site_adimi)
                 );
             elseif($site_fav == '<p>You did not select a file to upload.</p>'):
                 $datasss = array(
-                    'site_adi' => $site_name,
-                    'site_name_mobil' => $site_name_mobil,
-                    'site_baslik' => $site_title,
-                    'site_aciklama' => $site_description,
-                    'site_anahtar_kelimeler' => $site_tags,
-                    'yorum_oto_onay' => $yorum_oto_onay,
-                    'sayfa_basi_blog' => $sayfa_basi_blog,
-                    'random_sayfa_basi_blog' => $random_sayfa_basi_blog,
-                    'logomu_site_adimi' => $logomu_site_adimi,
-                    'site_logo' => $site_logo
+                    'site_adi' => htmlspecialchars($site_name),
+                    'site_name_mobil' => htmlspecialchars($site_name_mobil),
+                    'site_baslik' => htmlspecialchars($site_title),
+                    'site_aciklama' => htmlspecialchars($site_description),
+                    'site_anahtar_kelimeler' => htmlspecialchars($site_tags),
+                    'yorum_oto_onay' => htmlspecialchars($yorum_oto_onay),
+                    'sayfa_basi_blog' => htmlspecialchars($sayfa_basi_blog),
+                    'random_sayfa_basi_blog' => htmlspecialchars($random_sayfa_basi_blog),
+                    'logomu_site_adimi' => htmlspecialchars($logomu_site_adimi),
+                    'site_logo' => htmlspecialchars($site_logo)
                 );
             elseif($site_logo == '<p>You did not select a file to upload.</p>'):
                 $datasss = array(
-                    'site_adi' => $site_name,
-                    'site_name_mobil' => $site_name_mobil,
-                    'site_baslik' => $site_title,
-                    'site_aciklama' => $site_description,
-                    'site_anahtar_kelimeler' => $site_tags,
-                    'yorum_oto_onay' => $yorum_oto_onay,
-                    'sayfa_basi_blog' => $sayfa_basi_blog,
-                    'random_sayfa_basi_blog' => $random_sayfa_basi_blog,
-                    'logomu_site_adimi' => $logomu_site_adimi,
-                    'site_fav' => $site_fav
+                    'site_adi' => htmlspecialchars($site_name),
+                    'site_name_mobil' => htmlspecialchars($site_name_mobil),
+                    'site_baslik' => htmlspecialchars($site_title),
+                    'site_aciklama' => htmlspecialchars($site_description),
+                    'site_anahtar_kelimeler' => htmlspecialchars($site_tags),
+                    'yorum_oto_onay' => htmlspecialchars($yorum_oto_onay),
+                    'sayfa_basi_blog' => htmlspecialchars($sayfa_basi_blog),
+                    'random_sayfa_basi_blog' => htmlspecialchars($random_sayfa_basi_blog),
+                    'logomu_site_adimi' => htmlspecialchars($logomu_site_adimi),
+                    'site_fav' => htmlspecialchars($site_fav)
                 );
             else:
                 $datasss = array(
-                    'site_adi' => $site_name,
-                    'site_name_mobil' => $site_name_mobil,
-                    'site_baslik' => $site_title,
-                    'site_aciklama' => $site_description,
-                    'site_anahtar_kelimeler' => $site_tags,
-                    'yorum_oto_onay' => $yorum_oto_onay,
-                    'sayfa_basi_blog' => $sayfa_basi_blog,
-                    'random_sayfa_basi_blog' => $random_sayfa_basi_blog,
-                    'logomu_site_adimi' => $logomu_site_adimi,
-                    'site_logo' => $site_logo,
-                    'site_fav' => $site_fav
+                    'site_adi' => htmlspecialchars($site_name),
+                    'site_name_mobil' => htmlspecialchars($site_name_mobil),
+                    'site_baslik' => htmlspecialchars($site_title),
+                    'site_aciklama' => htmlspecialchars($site_description),
+                    'site_anahtar_kelimeler' => htmlspecialchars($site_tags),
+                    'yorum_oto_onay' => htmlspecialchars($yorum_oto_onay),
+                    'sayfa_basi_blog' => htmlspecialchars($sayfa_basi_blog),
+                    'random_sayfa_basi_blog' => htmlspecialchars($random_sayfa_basi_blog),
+                    'logomu_site_adimi' => htmlspecialchars($logomu_site_adimi),
+                    'site_logo' => htmlspecialchars($site_logo),
+                    'site_fav' => htmlspecialchars($site_fav)
                 );
             endif;
             $this->db->update('sistem_ayarlari', $datasss);
@@ -210,10 +210,10 @@ class Panel extends CI_Controller {
             $description = $this->input->post('description', true);
 
             $datasss = array(
-                'adi' => $name,
-                'icerik' => $content,
-                'anahtar_kelimeler' => $keywords,
-                'aciklama' => $description
+                'adi' => htmlspecialchars($name),
+                'icerik' => htmlspecialchars($content),
+                'anahtar_kelimeler' => htmlspecialchars($keywords),
+                'aciklama' => htmlspecialchars($description)
             );
             $this->db->where('id', $id);
             $this->db->update('sayfalar', $datasss);
@@ -252,11 +252,11 @@ class Panel extends CI_Controller {
 
 
             $datasss = array(
-                'adi' => $title,
-                'link' => $slug,
-                'icerik' => $content,
-                'aciklama' => $description,
-                'anahtar_kelimeler' => $tags
+                'adi' => htmlspecialchars($title),
+                'link' => htmlspecialchars($slug),
+                'icerik' => htmlspecialchars($content),
+                'aciklama' => htmlspecialchars($description),
+                'anahtar_kelimeler' => htmlspecialchars($tags)
             );
             $this->db->insert('sayfalar', $datasss);
             $this->session->set_flashdata('result', '<div class="alert alert-success">Başarılı</div>');
@@ -303,7 +303,7 @@ class Panel extends CI_Controller {
             $this->load->helper("highlighted_up");
 
             $config["upload_path"] = "assets/upload/";
-            $config['allowed_types'] = '*';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|webp|svg';
             $config['max_size'] = '64000';
             $config['min_height'] = '100';
             $config['min_width'] = '100';
@@ -323,15 +323,15 @@ class Panel extends CI_Controller {
 
 
             $data = array(
-                'adi' => $adi,
-                'link' => $link,
-                'gorsel' => $gorsel,
-                'kategori' => $kategori,
-                'ozet' => $ozet,
+                'adi' => htmlspecialchars($adi),
+                'link' => htmlspecialchars($link),
+                'gorsel' => htmlspecialchars($gorsel),
+                'kategori' => htmlspecialchars($kategori),
+                'ozet' => htmlspecialchars($ozet),
                 'icerik' => $icerik,
                 'tarih' => date('d-m-Y H:i'),
-                'aciklama' => $aciklama,
-                'anahtar_kelimeler' => $anahtar_kelimeler,
+                'aciklama' => htmlspecialchars($aciklama),
+                'anahtar_kelimeler' => htmlspecialchars($anahtar_kelimeler),
                 'aktiflik' => 1
             );
             $this->db->insert('blog', $data);
@@ -356,7 +356,7 @@ class Panel extends CI_Controller {
             $this->load->helper("highlighted_up");
 
             $config["upload_path"] = "assets/upload/";
-            $config['allowed_types'] = '*';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|webp|svg';
             $config['max_size'] = '64000';
             $config['min_height'] = '100';
             $config['min_width'] = '100';
@@ -377,27 +377,27 @@ class Panel extends CI_Controller {
 
             if($gorsel == '<p>You did not select a file to upload.</p>') :
                 $data = array (
-                    'adi' => $adi,
-                    'link' => $link,
-                    'kategori' => $kategori,
-                    'ozet' => $ozet,
+                    'adi' => htmlspecialchars($adi),
+                    'link' => htmlspecialchars($link),
+                    'kategori' => htmlspecialchars($kategori),
+                    'ozet' => htmlspecialchars($ozet),
                     'icerik' => $icerik,
                     'tarih' => date('d-m-Y H:i'),
-                    'aciklama' => $aciklama,
-                    'anahtar_kelimeler' => $anahtar_kelimeler,
+                    'aciklama' => htmlspecialchars($aciklama),
+                    'anahtar_kelimeler' => htmlspecialchars($anahtar_kelimeler),
                     'aktiflik' => 1
                 );
             else:
                 $data = array (
-                    'adi' => $adi,
-                    'link' => $link,
-                    'gorsel' => $gorsel,
-                    'kategori' => $kategori,
-                    'ozet' => $ozet,
-                    'icerik' => $icerik,
+                    'adi' => htmlspecialchars($adi),
+                    'link' => htmlspecialchars($link),
+                    'gorsel' => htmlspecialchars($gorsel),
+                    'kategori' => htmlspecialchars($kategori),
+                    'ozet' => htmlspecialchars($ozet),
+                    'icerik' => htmlspecialchars($icerik),
                     'tarih' => date('d-m-Y H:i'),
-                    'aciklama' => $aciklama,
-                    'anahtar_kelimeler' => $anahtar_kelimeler,
+                    'aciklama' => htmlspecialchars($aciklam),
+                    'anahtar_kelimeler' => htmlspecialchars($anahtar_kelimeler),
                     'aktiflik' => 1
                 );
             endif;
@@ -507,9 +507,9 @@ class Panel extends CI_Controller {
                 endif;
             endif;
             $data = array(
-                'sira' => $sira,
-                'yazi' => $adi,
-                'link' => $link,
+                'sira' => htmlspecialchars($sira),
+                'yazi' => htmlspecialchars($adi),
+                'link' => htmlspecialchars($link),
                 'aktiflik' => 1
             );
             $this->db->insert('menu', $data);
@@ -545,9 +545,9 @@ class Panel extends CI_Controller {
             endif;
 
             $data = array(
-                'sira' => $sira,
-                'yazi' => $adi,
-                'link' => $link,
+                'sira' => htmlspecialchars($sira),
+                'yazi' => htmlspecialchars($adi),
+                'link' => htmlspecialchars($link),
                 'aktiflik' => 1
             );
 
@@ -593,10 +593,10 @@ class Panel extends CI_Controller {
                 $link = permalink($adi);
             endif;
             $data = array(
-                'adi' => $adi,
-                'link' => $link,
-                'aciklama' => $aciklama,
-                'anahtar_kelimeler' => $anahtar_kelimeler,
+                'adi' => htmlspecialchars($adi),
+                'link' => htmlspecialchars($link),
+                'aciklama' => htmlspecialchars($aciklama),
+                'anahtar_kelimeler' => htmlspecialchars($anahtar_kelimeler),
                 'aktiflik' => 1
             );
             $this->db->insert('kategoriler', $data);
@@ -632,10 +632,10 @@ class Panel extends CI_Controller {
                 $link = permalink($adi);
             endif;
             $data = array(
-                'adi' => $adi,
-                'link' => $link,
-                'aciklama' => $aciklama,
-                'anahtar_kelimeler' => $anahtar_kelimeler,
+                'adi' => htmlspecialchars($adi),
+                'link' => htmlspecialchars($link),
+                'aciklama' => htmlspecialchars($aciklama),
+                'anahtar_kelimeler' => htmlspecialchars($anahtar_kelimeler),
                 'aktiflik' => 1
             );
 
