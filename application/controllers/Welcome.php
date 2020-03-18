@@ -41,7 +41,7 @@ class Welcome extends CI_Controller {
 
     public function detay($slug){
         $this->load->helper("ago");
-        $detail = $this->db->get_where('blog', ['link' => $slug, 'aktiflik' => 1])->row_array();
+        $detail = $this->db->get_where('blog', ['link' => htmlspecialchars($slug), 'aktiflik' => 1])->row_array();
         if ($detail):
             $resultSite = $this->db->get_where('sistem_ayarlari', ['id' => 1])->row_array();
             $limit = $resultSite['random_sayfa_basi_blog'];
@@ -87,7 +87,7 @@ class Welcome extends CI_Controller {
             $tarih   = date('d.m.Y H:i');
             $pp = rand(1,10);
             $ip = $_SERVER['REMOTE_ADDR'];
-            $data = array('blog_id' => $id,  'profil' => $pp.".png", 'ad' => $ad, 'mail' => $mail, 'yorum' => $yorum, 'durum' => $resultSite['yorum_oto_onay'], 'tarih' => $tarih, 'ip' => $ip);
+            $data = array('blog_id' => $id,  'profil' => $pp.".png", 'ad' => htmlspecialchars($ad), 'mail' => htmlspecialchars($mail), 'yorum' => htmlspecialchars($yorum), 'durum' => $resultSite['yorum_oto_onay'], 'tarih' => $tarih, 'ip' => $ip);
             $this->db->insert('yorumlar', $data);
             if($resultSite['yorum_oto_onay'] == 0):
                 $this->session->set_flashdata('sonuc', '<div class="alert alert-success">Yorum Başarıyla Eklendi. En yakın zamanda yayınlanacaktır.</div>');
@@ -125,9 +125,9 @@ class Welcome extends CI_Controller {
             $mail = $this->input->post('mail', true);
             $name = $this->input->post('name', true);
             $data = array(
-                'isim_soyisim' => $name,
-                'mail' => $mail,
-                'mesaj' => $mesaage,
+                'isim_soyisim' => htmlspecialchars($name),
+                'mail' => htmlspecialchars($mail),
+                'mesaj' => htmlspecialchars($mesaage),
                 'tarih' => date('d.m.Y H:i'),
                 'ip' => $_SERVER['REMOTE_ADDR']
             );
@@ -138,7 +138,7 @@ class Welcome extends CI_Controller {
     }
 
     public function sayfa($url){
-        $resultPageDetail = $this->db->get_where('sayfalar', ['link' => $url])->row_array();
+        $resultPageDetail = $this->db->get_where('sayfalar', ['link' => htmlspecialchars($url)])->row_array();
         if ($resultPageDetail):
             $resultSite = $this->db->get_where('sistem_ayarlari', ['id' => 1])->row_array();
             $data['fav'] = $resultSite['site_fav'];
@@ -162,6 +162,7 @@ class Welcome extends CI_Controller {
 
     public function arama(){
         $kelime = $this->input->get('s', true);
+        $kelime = htmlspecialchars($kelime);
         if ($kelime):
             $this->load->helper("ago");
             $resultSite = $this->db->get_where('sistem_ayarlari', ['id' => 1])->row_array();
