@@ -205,13 +205,13 @@ class Panel extends CI_Controller {
         }else{
             $id = $this->input->post('id', true);
             $name = $this->input->post('name', true);
-            $content = $this->input->post('content', true);
+            $content = $this->input->post('content');
             $keywords = $this->input->post('keywords', true);
             $description = $this->input->post('description', true);
 
             $datasss = array(
                 'adi' => htmlspecialchars($name),
-                'icerik' => htmlspecialchars($content),
+                'icerik' => $content,
                 'anahtar_kelimeler' => htmlspecialchars($keywords),
                 'aciklama' => htmlspecialchars($description)
             );
@@ -246,7 +246,7 @@ class Panel extends CI_Controller {
 
             $title = $this->input->post('name', true);
             $slug = permalink($title);
-            $content = $this->input->post('content', true);
+            $content = $this->input->post('content');
             $description = $this->input->post('description', true);
             $tags = $this->input->post('tags', true);
 
@@ -254,7 +254,7 @@ class Panel extends CI_Controller {
             $datasss = array(
                 'adi' => htmlspecialchars($title),
                 'link' => htmlspecialchars($slug),
-                'icerik' => htmlspecialchars($content),
+                'icerik' => $content,
                 'aciklama' => htmlspecialchars($description),
                 'anahtar_kelimeler' => htmlspecialchars($tags)
             );
@@ -272,7 +272,7 @@ class Panel extends CI_Controller {
 
         //pagination
         $config = array();
-        $config["base_url"] = base_url('panel/sayfalar/');
+        $config["base_url"] = base_url('panel/bloglar/');
         $config["total_rows"] = $this->GetModel->blog_sayisi();
         $config["per_page"] = 10;
         $config["uri_segment"] = 3;
@@ -315,7 +315,7 @@ class Panel extends CI_Controller {
             if (empty($link)):
                 $link = permalink($adi);
             endif;
-            $icerik = $this->input->post('icerik', true);
+            $icerik = $this->input->post('icerik');
             $aciklama = $this->input->post('aciklama', true);
             $ozet = $this->input->post('ozet', true);
             $anahtar_kelimeler = $this->input->post('anahtar_kelimeler', true);
@@ -368,7 +368,7 @@ class Panel extends CI_Controller {
             if (empty($link)):
                 $link = permalink($adi);
             endif;
-            $icerik = $this->input->post('icerik', true);
+            $icerik = $this->input->post('icerik');
             $aciklama = $this->input->post('aciklama', true);
             $ozet = $this->input->post('ozet', true);
             $anahtar_kelimeler = $this->input->post('anahtar_kelimeler', true);
@@ -394,7 +394,7 @@ class Panel extends CI_Controller {
                     'gorsel' => htmlspecialchars($gorsel),
                     'kategori' => htmlspecialchars($kategori),
                     'ozet' => htmlspecialchars($ozet),
-                    'icerik' => htmlspecialchars($icerik),
+                    'icerik' => $icerik,
                     'tarih' => date('d-m-Y H:i'),
                     'aciklama' => htmlspecialchars($aciklama),
                     'anahtar_kelimeler' => htmlspecialchars($anahtar_kelimeler),
