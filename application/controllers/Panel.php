@@ -294,7 +294,7 @@ class Panel extends CI_Controller {
             $resultSite = $this->db->get_where('sistem_ayarlari', ['id' => 1])->row_array();
             $data['getSiteName'] = $resultSite['site_adi'];
             $data['getSiteNameMobil'] = $resultSite['site_name_mobil'];
-            $data['title'] = 'Sayfa Ekle';
+            $data['title'] = 'Blog Ekle';
             $this->load->view('admin/header', $data);
             $this->load->view('admin/blog_ekle');
             $this->load->view('admin/footer');
