@@ -426,13 +426,13 @@ class Panel extends CI_Controller {
         redirect(base_url().'panel/bloglar');
     }
     public function blog_sil($id){
-        if(unlink("assets/upload/".$this->GetModel->getIdBlogResim($id))):
-            $this->db->where('id', $id);
-            $this->db->delete('blog');
-            $this->session->set_flashdata('result', '<div class="alert alert-success">Başarılı</div>');
-        else:
-            $this->session->set_flashdata('result', '<div class="alert alert-danger">Başarısız</div>');
+        $resim_url = "assets/upload/".$this->GetModel->getIdBlogResim($id);
+        if(file_exists($resim_url)):
+            unlink($resim_url);
         endif;
+        $this->db->where('id', $id);
+        $this->db->delete('blog');
+        $this->session->set_flashdata('result', '<div class="alert alert-success">Başarılı</div>');
         redirect(base_url().'panel/bloglar');
     }
 
