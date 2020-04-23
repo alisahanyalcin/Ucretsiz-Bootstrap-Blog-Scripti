@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Yazı Ekle</h4>
+                        <h4>Blog Ekle</h4>
                     </div>
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="card-body">
@@ -24,6 +24,7 @@
                                     <input type="file" name="gorsel" class="custom-file-input" id="gorsel">
                                     <label class="custom-file-label">Choose File</label>
                                 </div>
+                                <small class="text-info" style="font-size: 100%">gif | jpg | png | jpeg | webp | svg</small>
                                 <?= form_error('gorsel','<small class="text-danger">','</small>');?>
                             </div>
                             <div class="form-group">
