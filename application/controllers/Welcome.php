@@ -70,6 +70,8 @@ class Welcome extends CI_Controller {
             $this->load->view('user/header', $data);
             $this->load->view('user/detay');
             $this->load->view('user/footer');
+        else:
+            show_404();
         endif;
     }
 
@@ -196,6 +198,8 @@ class Welcome extends CI_Controller {
             $this->load->view('user/header', $data);
             $this->load->view('user/arama');
             $this->load->view('user/footer');
+        else:
+            show_404();
         endif;
     }
 }
