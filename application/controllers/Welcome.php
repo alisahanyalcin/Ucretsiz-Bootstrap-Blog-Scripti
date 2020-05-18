@@ -80,16 +80,17 @@ class Welcome extends CI_Controller {
     }
 
     public function yorum_yap(){
+        $this->load->library('recaptcha');
         $this->form_validation->set_rules('ad', 'Adınız', 'required|trim');
         $this->form_validation->set_rules('mail', 'Mail Adresiniz', 'required|trim');
         $this->form_validation->set_rules('yorum', 'Yorumunuz', 'required|trim');
         if ($this->form_validation->run() == true):
             $recaptcha = $this->input->post('g-recaptcha-response');
             $response = $this->recaptcha->verifyResponse($recaptcha);
+            $resultSite = $this->db->get_where('sistem_ayarlari', ['id' => 1])->row_array();
+            $id = $this->input->post('id', true);
+            $detail = $this->db->get_where('blog', ['id' => $id])->row_array();
             if (isset($response['success']) and $response['success'] === true):
-                $resultSite = $this->db->get_where('sistem_ayarlari', ['id' => 1])->row_array();
-                $id = $this->input->post('id', true);
-                $detail = $this->db->get_where('blog', ['id' => $id])->row_array();
                 $ad = $this->input->post('ad', true);
                 $mail = $this->input->post('mail', true);
                 $yorum = $this->input->post('yorum', true);
