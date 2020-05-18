@@ -17,6 +17,7 @@
 	<li>Y&ouml;netim paneli &uuml;zerinden temel d&uuml;zeyde seo ayarları.</li>
 	<li>Kullanıcı dostu aray&uuml;z.</li>
 	<li>Hafif ve hızlı yapı, Temiz kod. <strong>PageSpeed</strong> değerini <a href="https://developers.google.com/speed/pagespeed/insights/?hl=TR&amp;url=https://demo.alisahanyalcin.com/ucretsizblog/">buradan</a> kontrol edebilirsiniz.</li>
+	<li>Google reCAPTCHA ile daha güvenli form yapıları.</li>
 </ol>
 
 <p>&nbsp;</p>
