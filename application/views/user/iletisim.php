@@ -19,6 +19,10 @@
                         <div class="form-group">
                             <textarea class="form-control" name="mesaage" rows="3" placeholder="İletişime Geçme Sebebiniz.."></textarea>
                         </div>
+                        <div class="form-group">
+                            <?= $widget;?>
+                            <?= $script;?>
+                        </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">
                                 İletişime Geç
