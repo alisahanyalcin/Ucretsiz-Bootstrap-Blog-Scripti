@@ -48,6 +48,10 @@
                             <label>Yorumunuz</label>
                             <textarea name="yorum" placeholder="Yorumunuz" class="form-control" rows="3"></textarea>
                         </div>
+                        <div class="form-group">
+                            <?= $widget;?>
+                            <?= $script;?>
+                        </div>
                         <button type="submit" class="btn btn-primary">Gönder</button>
                     </form>
                 </div>
