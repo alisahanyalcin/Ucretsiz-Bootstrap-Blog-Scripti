@@ -41,6 +41,7 @@ class Welcome extends CI_Controller {
 
     public function detay($slug){
         $this->load->helper("ago");
+        $this->load->library('recaptcha');
         $detail = $this->db->get_where('blog', ['link' => htmlspecialchars($slug), 'aktiflik' => 1])->row_array();
         if ($detail):
             $resultSite = $this->db->get_where('sistem_ayarlari', ['id' => 1])->row_array();
@@ -67,6 +68,9 @@ class Welcome extends CI_Controller {
             $data['yorumsay'] = $this->db->get_where('yorumlar', ['blog_id' => $detail['id'], 'durum' => 1])->num_rows();
             $data['getBlogYorum'] = $this->UserGetModel->getBlogYorum($detail['id']);
 
+            $data['widget'] = $this->recaptcha->getWidget();
+            $data['script'] = $this->recaptcha->getScriptTag();
+
             $this->load->view('user/header', $data);
             $this->load->view('user/detay');
             $this->load->view('user/footer');
@@ -80,27 +84,34 @@ class Welcome extends CI_Controller {
         $this->form_validation->set_rules('mail', 'Mail Adresiniz', 'required|trim');
         $this->form_validation->set_rules('yorum', 'Yorumunuz', 'required|trim');
         if ($this->form_validation->run() == true):
-            $resultSite = $this->db->get_where('sistem_ayarlari', ['id' => 1])->row_array();
-            $id = $this->input->post('id', true);
-            $detail = $this->db->get_where('blog', ['id' => $id])->row_array();
-            $ad = $this->input->post('ad', true);
-            $mail = $this->input->post('mail', true);
-            $yorum = $this->input->post('yorum', true);
-            $tarih   = date('d.m.Y H:i');
-            $pp = rand(1,10);
-            $ip = $_SERVER['REMOTE_ADDR'];
-            $data = array('blog_id' => $id,  'profil' => $pp.".png", 'ad' => htmlspecialchars($ad), 'mail' => htmlspecialchars($mail), 'yorum' => htmlspecialchars($yorum), 'durum' => $resultSite['yorum_oto_onay'], 'tarih' => $tarih, 'ip' => $ip);
-            $this->db->insert('yorumlar', $data);
-            if($resultSite['yorum_oto_onay'] == 0):
-                $this->session->set_flashdata('sonuc', '<div class="alert alert-success">Yorum Başarıyla Eklendi. En yakın zamanda yayınlanacaktır.</div>');
+            $recaptcha = $this->input->post('g-recaptcha-response');
+            $response = $this->recaptcha->verifyResponse($recaptcha);
+            if (isset($response['success']) and $response['success'] === true):
+                $resultSite = $this->db->get_where('sistem_ayarlari', ['id' => 1])->row_array();
+                $id = $this->input->post('id', true);
+                $detail = $this->db->get_where('blog', ['id' => $id])->row_array();
+                $ad = $this->input->post('ad', true);
+                $mail = $this->input->post('mail', true);
+                $yorum = $this->input->post('yorum', true);
+                $tarih   = date('d.m.Y H:i');
+                $pp = rand(1,10);
+                $ip = $_SERVER['REMOTE_ADDR'];
+                $data = array('blog_id' => $id,  'profil' => $pp.".png", 'ad' => htmlspecialchars($ad), 'mail' => htmlspecialchars($mail), 'yorum' => htmlspecialchars($yorum), 'durum' => $resultSite['yorum_oto_onay'], 'tarih' => $tarih, 'ip' => $ip);
+                $this->db->insert('yorumlar', $data);
+                if($resultSite['yorum_oto_onay'] == 0):
+                    $this->session->set_flashdata('sonuc', '<div class="alert alert-success">Yorum Başarıyla Eklendi. En yakın zamanda yayınlanacaktır.</div>');
+                else:
+                    $this->session->set_flashdata('sonuc', '<div class="alert alert-success">Yorum Başarıyla Eklendi.</div>');
+                endif;
             else:
-                $this->session->set_flashdata('sonuc', '<div class="alert alert-success">Yorum Başarıyla Eklendi.</div>');
+                $this->session->set_flashdata('sonuc', '<div class="alert alert-danger">Recaptcha alanı zorunludur.</div>');
             endif;
             redirect($detail["link"]);
         endif;
     }
 
     public function iletisim(){
+        $this->load->library('recaptcha');
         $resultSite = $this->db->get_where('sistem_ayarlari', ['id' => 1])->row_array();
         $data['fav'] = $resultSite['site_fav'];
         if($resultSite['logomu_site_adimi']==1):
@@ -114,6 +125,9 @@ class Welcome extends CI_Controller {
         $data['description'] = $resultSiteDetail['aciklama'];
         $data['tags'] = $resultSiteDetail['anahtar_kelimeler'];
 
+        $data['widget'] = $this->recaptcha->getWidget();
+        $data['script'] = $this->recaptcha->getScriptTag();
+
         $this->form_validation->set_rules('mesaage', 'Message', 'required|trim');
         $this->form_validation->set_rules('mail', 'Mail', 'required|trim');
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
@@ -123,18 +137,24 @@ class Welcome extends CI_Controller {
             $this->load->view('user/iletisim');
             $this->load->view('user/footer');
         else:
-            $mesaage = $this->input->post('mesaage', true);
-            $mail = $this->input->post('mail', true);
-            $name = $this->input->post('name', true);
-            $data = array(
-                'isim_soyisim' => htmlspecialchars($name),
-                'mail' => htmlspecialchars($mail),
-                'mesaj' => htmlspecialchars($mesaage),
-                'tarih' => date('d.m.Y H:i'),
-                'ip' => $_SERVER['REMOTE_ADDR']
-            );
-            $this->db->insert('iletisim', $data);
-            $this->session->set_flashdata('sonuc', '<div class="alert alert-success">Mesajınız bize ulaştı en kısa sürede size geri döneceğiz.</div>');
+            $recaptcha = $this->input->post('g-recaptcha-response');
+            $response = $this->recaptcha->verifyResponse($recaptcha);
+            if (isset($response['success']) and $response['success'] === true):
+                $mesaage = $this->input->post('mesaage', true);
+                $mail = $this->input->post('mail', true);
+                $name = $this->input->post('name', true);
+                $data = array(
+                    'isim_soyisim' => htmlspecialchars($name),
+                    'mail' => htmlspecialchars($mail),
+                    'mesaj' => htmlspecialchars($mesaage),
+                    'tarih' => date('d.m.Y H:i'),
+                    'ip' => $_SERVER['REMOTE_ADDR']
+                );
+                $this->db->insert('iletisim', $data);
+                $this->session->set_flashdata('sonuc', '<div class="alert alert-success">Mesajınız bize ulaştı en kısa sürede size geri döneceğiz.</div>');
+            else:
+                $this->session->set_flashdata('sonuc', '<div class="alert alert-danger">Recaptcha alanı zorunludur.</div>');
+            endif;
             redirect('iletisim');
         endif;
     }
@@ -159,6 +179,8 @@ class Welcome extends CI_Controller {
             $this->load->view('user/header', $data);
             $this->load->view('user/sayfa');
             $this->load->view('user/footer');
+        else:
+            show_404();
         endif;
     }
 
