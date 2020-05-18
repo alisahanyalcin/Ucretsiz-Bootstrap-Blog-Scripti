@@ -29,7 +29,7 @@
 	<li><strong>ucretsizblog.sql</strong>&nbsp;dosyasını oluşturduğunuz veritabanına i&ccedil;eri aktar diyerek importlayın,</li>
 	<li>Sırasıyla şu dosyaları a&ccedil;ın&nbsp;<strong>application</strong>-&gt;<strong>config</strong>-&gt;<strong>database.php</strong>&nbsp;dosyasında <strong>10,11,12</strong>. satırları oluşturduğunuz databaseye g&ouml;re d&uuml;zenleyin,</li>
 	<li>Link yapısı otomatik oluştuğu i&ccedil;in başka herhangi bir d&uuml;zenleme yapmanıza gerek yoktur.</li>
-	<li>Google reCAPTCHA'yı kullanmanız için <a href="https://www.google.com/recaptcha/admin">link</a> üzerinden giriş yaparak V2için site_key ve secret_key bilgilerini edininiz ardından github dan indirmiş olduğunuz klasörde sırasıyla şu dizinlere giriniz ANADİZİN\application\config\recaptcha.php dosyadaki 3. ve 4. satırları site_key ve secret_key bilgilerinize göre doldurunuz her şey tamam..
+	<li>Google reCAPTCHA'yı kullanmanız için <a href="https://www.google.com/recaptcha/admin">link</a> üzerinden giriş yaparak V2 için site_key ve secret_key bilgilerini edininiz ardından indirmiş olduğunuz klasörde sırasıyla şu dizinlere giriniz ANADİZİN\application\config\recaptcha.php dosyadaki 3. ve 4. satırları site_key ve secret_key bilgilerinize göre doldurunuz her şey tamam..
 	</li>
 </ol>
 
