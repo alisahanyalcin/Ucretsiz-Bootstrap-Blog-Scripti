@@ -396,7 +396,7 @@ class Panel extends CI_Controller {
                     'ozet' => htmlspecialchars($ozet),
                     'icerik' => htmlspecialchars($icerik),
                     'tarih' => date('d-m-Y H:i'),
-                    'aciklama' => htmlspecialchars($aciklam),
+                    'aciklama' => htmlspecialchars($aciklama),
                     'anahtar_kelimeler' => htmlspecialchars($anahtar_kelimeler),
                     'aktiflik' => 1
                 );
