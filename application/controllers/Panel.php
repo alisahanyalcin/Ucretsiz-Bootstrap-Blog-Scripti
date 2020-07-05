@@ -272,7 +272,7 @@ class Panel extends CI_Controller {
 
         //pagination
         $config = array();
-        $config["base_url"] = base_url('panel/sayfalar/');
+        $config["base_url"] = base_url('panel/bloglar/');
         $config["total_rows"] = $this->GetModel->blog_sayisi();
         $config["per_page"] = 10;
         $config["uri_segment"] = 3;
