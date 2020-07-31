@@ -81,6 +81,6 @@
 
 <script type="text/javascript">
     CKEDITOR.replace( 'icerik', {
-        filebrowserImageUploadUrl: "image_upload?type=image&CKEditorFuncNum=1",
+        filebrowserImageUploadUrl: "<?=base_url();?>panel/image_upload?type=image&CKEditorFuncNum=1",
     } );
 </script>
