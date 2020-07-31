@@ -38,7 +38,7 @@
 
 <p>&nbsp;</p>
 
-<p><strong>Admin Giriş linki; siteadi.com/panel</strong></p>
+<p><strong>admin giriş linki; siteadi.com/panel</strong></p>
 
 <p><strong>admin kullanıcı adı: admin</strong></p>
 
