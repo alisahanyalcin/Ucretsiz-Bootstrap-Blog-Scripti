@@ -1,4 +1,4 @@
-<script src="<?= base_url();?>/assets/ckeditor/ckeditor.js"></script>
+<script src="<?= base_url('assets/ckeditor/ckeditor.js')?> "></script>
 <div class="main-content">
     <section class="section">
         <div class="row">
@@ -37,6 +37,8 @@
     </section>
 </div>
 
-<script>
-    CKEDITOR.replace('content');
+<script type="text/javascript">
+    CKEDITOR.replace( 'icerik', {
+        filebrowserImageUploadUrl: "image_upload?type=image&CKEditorFuncNum=1",
+    } );
 </script>
