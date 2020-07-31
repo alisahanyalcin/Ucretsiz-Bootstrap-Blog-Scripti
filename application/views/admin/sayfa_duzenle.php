@@ -42,7 +42,7 @@
 </div>
 
 <script type="text/javascript">
-    CKEDITOR.replace( 'icerik', {
+    CKEDITOR.replace( 'content', {
         filebrowserImageUploadUrl: "image_upload?type=image&CKEditorFuncNum=1",
     } );
 </script>
