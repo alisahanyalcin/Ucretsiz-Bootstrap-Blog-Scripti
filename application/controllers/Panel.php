@@ -693,4 +693,14 @@ class Panel extends CI_Controller {
         $this->session->set_flashdata('result', '<div class="alert alert-success">Başarılı</div>');
         redirect(base_url().'panel/yorumlar');
     }
+    
+    public function image_upload(){
+        $CKEditor = $_GET['CKEditor'];
+        $funcNum = $_GET['CKEditorFuncNum'];
+
+        if(move_uploaded_file($_FILES['upload']['tmp_name'], "assets/upload/".$_FILES['upload']['name'])){
+            $url = base_url()."/assets/upload/".$_FILES['upload']['name'];
+            echo "<script>window.parent.CKEDITOR.tools.callFunction('".$funcNum."', '".$url."', '');</script>";
+        }
+    }
 }
