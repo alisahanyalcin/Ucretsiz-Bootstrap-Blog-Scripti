@@ -32,6 +32,8 @@
 	<li>Link yapısı otomatik oluştuğu i&ccedil;in başka herhangi bir d&uuml;zenleme yapmanıza gerek yoktur.</li>
 	<li>Google reCAPTCHA'yı kullanmanız için <a href="https://www.google.com/recaptcha/admin">link</a> üzerinden giriş yaparak V2 için site_key ve secret_key bilgilerini edininiz ardından indirmiş olduğunuz klasörde sırasıyla şu dizinlere giriniz ANADİZİN\application\config\recaptcha.php dosyadaki 3. ve 4. satırları site_key ve secret_key bilgilerinize göre doldurunuz her şey tamam..
 	</li>
+	<li>Ckeditor üzerinden görsel eklerken; gelişmiş penceresinde bulunan Stil Sınıfları alanına img-fluid rounded yazarsanız görsel boyutunda herhangi bir sorun olmayacaktır. 
+	</li>
 </ol>
 
 <p>&nbsp;</p>
