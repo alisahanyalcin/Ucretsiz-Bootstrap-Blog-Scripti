@@ -47,6 +47,8 @@ $route['panel/yorum_sil/(:num)'] = "Panel/yorum_sil/$1";
 $route['panel/yorum_onayla/(:num)'] = "Panel/yorum_onayla/$1";
 $route['panel/yorum_gizle/(:num)'] = "Panel/yorum_gizle/$1";
 
+$route['panel/image_upload'] = "Panel/image_upload";
+
 
 
 //Kullanıcı Tarafı
