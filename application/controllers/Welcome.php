@@ -33,6 +33,7 @@ class Welcome extends CI_Controller {
         $data["links"] = $this->pagination->create_links();
         $data['getRastgeleBlog'] = $this->UserGetModel->getRastgeleBlog($limit);
         $data['getMenu'] = $this->UserGetModel->getMenu();
+            $data['getKategoriler'] = $this->UserGetModel->getKategoriler();
 
         $this->load->view('user/header', $data);
         $this->load->view('user/index');
@@ -73,6 +74,74 @@ class Welcome extends CI_Controller {
 
             $this->load->view('user/header', $data);
             $this->load->view('user/detay');
+            $this->load->view('user/footer');
+        else:
+            show_404();
+        endif;
+    }
+    
+    public function kategoriler(){
+        $resultPageDetail = $this->db->get_where('sayfalar', ['link' => 'kategoriler'])->row_array();
+        if ($resultPageDetail):
+            $resultSite = $this->db->get_where('sistem_ayarlari', ['id' => 1])->row_array();
+            $data['fav'] = $resultSite['site_fav'];
+            if($resultSite['logomu_site_adimi']==1):
+                $data['site_adi'] = "<img style='height:35px;' src='".base_url()."assets/upload/".$resultSite['site_logo']."'>";
+            else:
+                $data['site_adi'] = $resultSite['site_adi'];
+            endif;
+            $data['site'] = $resultSite['site_adi'];
+            $data['title'] = $resultPageDetail['adi']." - ".$resultSite['site_adi'];
+            $data['description'] = $resultPageDetail['aciklama'];
+            $data['tags'] = $resultPageDetail['anahtar_kelimeler'];
+            $data['baslik'] = $resultPageDetail['adi'];
+
+            $data['getMenu'] = $this->UserGetModel->getMenu();
+            $data['getKategoriler'] = $this->UserGetModel->getKategoriler();
+            $this->load->view('user/header', $data);
+            $this->load->view('user/kategoriler');
+            $this->load->view('user/footer');
+        else:
+            show_404();
+        endif;
+    }
+
+    public function kategori($url){
+        $this->load->helper("ago");
+        $resultDetail = $this->db->get_where('kategoriler', ['link' => htmlspecialchars($url)])->row_array();
+        if ($resultDetail):
+            $resultSite = $this->db->get_where('sistem_ayarlari', ['id' => 1])->row_array();
+            $data['fav'] = $resultSite['site_fav'];
+            if($resultSite['logomu_site_adimi']==1):
+                $data['site_adi'] = "<img style='height:35px;' src='".base_url()."assets/upload/".$resultSite['site_logo']."'>";
+            else:
+                $data['site_adi'] = $resultSite['site_adi'];
+            endif;
+            $limit = $resultSite['random_sayfa_basi_blog'];
+
+            $data['site'] = $resultSite['site_adi'];
+            $data['title'] = $resultDetail['adi']." - ".$resultSite['site_adi'];
+            $data['description'] = $resultDetail['aciklama'];
+            $data['tags'] = $resultDetail['anahtar_kelimeler'];
+            $data['baslik'] = $resultDetail['adi'];
+
+            $config = array();
+            $config["base_url"] = base_url()."kategori/".$url."/";
+            $config["total_rows"] = $this->UserGetModel->KategoriBlogCount($resultDetail['id']);
+            $config["per_page"] = $resultSite['sayfa_basi_blog'];
+            $config["uri_segment"] = 3;
+            $config['use_page_numbers'] = TRUE;
+            $this->pagination->initialize($config);
+            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            $data["results"] = $this->UserGetModel->fetchKategoriBlog($config["per_page"], $page, $resultDetail['id']);
+            $data["links"] = $this->pagination->create_links();
+
+            $data['getRastgeleBlog'] = $this->UserGetModel->getRastgeleBlog($limit);
+            $data['getKategoriler'] = $this->UserGetModel->getKategoriler();
+
+            $data['getMenu'] = $this->UserGetModel->getMenu();
+            $this->load->view('user/header', $data);
+            $this->load->view('user/kategori');
             $this->load->view('user/footer');
         else:
             show_404();
@@ -218,6 +287,7 @@ class Welcome extends CI_Controller {
 
             $data['getRastgeleBlog'] = $this->UserGetModel->getRastgeleBlog($limit);
             $data['getMenu'] = $this->UserGetModel->getMenu();
+            $data['getKategoriler'] = $this->UserGetModel->getKategoriler();
             $this->load->view('user/header', $data);
             $this->load->view('user/arama');
             $this->load->view('user/footer');
