@@ -13,7 +13,7 @@
                             <a href="<?= base_url().$rows->link;?>" class="btn btn-primary">Devamını Oku</a>
                         </div>
                         <div class="card-footer text-muted">
-                            <?= time_ago($rows->tarih);?>, <?= $this->UserGetModel->getIdKategori($rows->kategori);?>
+                            <?= time_ago($rows->tarih);?>, <a href="<?= base_url()."kategori/".$this->UserGetModel->getIdKatLink($rows->kategori);?>"><?= $this->UserGetModel->getIdKategori($rows->kategori);?></a>
                         </div>
                     </div>
             <?php
@@ -44,6 +44,22 @@
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Kategoriler
+                </div>
+                <ul class="list-group list-group-flush">
+                    <?php if(is_array($getKategoriler) && count($getKategoriler) > 0):
+                        foreach ($getKategoriler as $rows) :
+                            ?>
+                            <li class="list-group-item">
+                                <a href="<?= base_url()."kategori/".$rows->link;?>">
+                                    <?= $rows->adi;?>
+                                </a>
+                            </li>
+                        <?php endforeach; endif; ?>
+                </ul>
             </div>
             <div class="card">
                 <div class="card-header">
