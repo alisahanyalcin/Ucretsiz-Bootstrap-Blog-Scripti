@@ -58,6 +58,8 @@ $route['yorum_yap'] = "welcome/yorum_yap";
 $route['sayfa/(.*)'] = "welcome/sayfa/$1";
 $route['ara'] = "welcome/arama";
 $route['ara/(:num)'] = "welcome/arama/$1";
+$route['kategoriler'] = "welcome/kategoriler";
+$route['kategori/(.*)'] = "welcome/kategori/$1";
 $route['(.*)'] = "welcome/detay/$1";
 
 //sistem tarafı değiştirmeyin.
