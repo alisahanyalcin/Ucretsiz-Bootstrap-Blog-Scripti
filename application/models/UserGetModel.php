@@ -55,6 +55,30 @@ class UserGetModel extends CI_Model
         return false;
     }
 
+    public function KategoriBlogCount($kategoriID)
+    {
+        $this->db->where('kategori', $kategoriID);
+        $this->db->where('aktiflik', 1);
+        $this->db->order_by("id", "DESC");
+        return $this->db->count_all_results("blog");
+    }
+
+    public function fetchKategoriBlog($limit, $start, $kategoriID)
+    {
+        $this->db->limit($limit, $start);
+        $this->db->where('kategori', $kategoriID);
+        $this->db->where('aktiflik', 1);
+        $this->db->order_by("id", "DESC");
+        $query = $this->db->get("blog");
+        if ($query->num_rows() > 0) :
+            foreach ($query->result() as $row) :
+                $data[] = $row;
+            endforeach;
+            return $data;
+        endif;
+        return false;
+    }
+
     public function getRastgeleBlog($limit){
         $this->db->where('aktiflik', 1);
         $this->db->order_by("", "random")->limit($limit);
@@ -77,12 +101,28 @@ class UserGetModel extends CI_Model
         return $query->result();
     }
 
+    public function getKategoriler(){
+        $this->db->where('aktiflik', 1);
+        $this->db->order_by("id", "DESC");
+        $query = $this->db->get('kategoriler');
+        return $query->result();
+    }
+
+
     //ıdye göre içerik için
     public function getIdKategori($id){
         $this->db->where('id', $id);
         $query = $this->db->get('kategoriler');
         if ($query->num_rows() > 0) {
             return $query->row()->adi;
+        }
+        return false;
+    }
+    public function getIdKatLink($id){
+        $this->db->where('id', $id);
+        $query = $this->db->get('kategoriler');
+        if ($query->num_rows() > 0) {
+            return $query->row()->link;
         }
         return false;
     }
