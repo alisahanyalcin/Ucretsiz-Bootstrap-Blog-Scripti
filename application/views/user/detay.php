@@ -5,7 +5,7 @@
                 <?= $name;?>
             </h1>
             <p class="lead">
-                <?= $date;?>, <?= $this->UserGetModel->getIdKategori($category);?>
+                <?= $date;?>, <a href="<?= base_url()."kategori/".$this->UserGetModel->getIdKatLink($category);?>"><?= $this->UserGetModel->getIdKategori($category);?></a>
             </p>
             <hr>
             <img class="img-fluid rounded" src="<?= $highlighted;?>" alt="<?= $name;?>">
