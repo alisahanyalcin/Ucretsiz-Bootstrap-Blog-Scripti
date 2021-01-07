@@ -9,74 +9,80 @@ class UserGetModel extends CI_Model
 
     public function blog_count()
     {
+        $this->db->select('count(*) as allcount');
         $this->db->where('aktiflik', 1);
-        return $this->db->count_all("blog");
+        $this->db->from('blog');
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        return $result[0]['allcount'];
     }
 
-    public function fetch_blog($limit, $start)
+    public function fetch_blog($rowno, $rowperpage)
     {
-        $this->db->limit($limit, $start);
+        $this->db->select('*');
         $this->db->where('aktiflik', 1);
         $this->db->order_by("id", "DESC");
-        $query = $this->db->get("blog");
-        if ($query->num_rows() > 0) :
-            foreach ($query->result() as $row) :
-                $data[] = $row;
-            endforeach;
-            return $data;
-        endif;
-        return false;
+        $this->db->from('blog');
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+
+        return $query->result_array();
     }
 
     public function blog_arama_count($kelime)
     {
+        $this->db->select('count(*) as allcount');
         $this->db->like('icerik', $kelime);
         $this->db->or_like('adi', $kelime);
         $this->db->or_like('ozet', $kelime);
         $this->db->where('aktiflik', 1);
-        return $this->db->count_all("blog");
+        $this->db->from('blog');
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        return $result[0]['allcount'];
     }
 
-    public function fetch_arama_blog($kelime, $limit, $start)
+    public function fetch_arama_blog($kelime, $rowno, $rowperpage)
     {
-        $this->db->limit($limit, $start);
+        $this->db->select('*');
+        $this->db->where('aktiflik', 1);
+        $this->db->order_by("id", "DESC");
+        $this->db->from('blog');
         $this->db->like('icerik', $kelime);
         $this->db->or_like('adi', $kelime);
         $this->db->or_like('ozet', $kelime);
-        $this->db->where('aktiflik', 1);
-        $this->db->order_by("id", "DESC");
-        $query = $this->db->get("blog");
-        if ($query->num_rows() > 0) :
-            foreach ($query->result() as $row) :
-                $data[] = $row;
-            endforeach;
-            return $data;
-        endif;
-        return false;
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+
+        return $query->result_array();
     }
 
     public function KategoriBlogCount($kategoriID)
     {
+        $this->db->select('count(*) as allcount');
         $this->db->where('kategori', $kategoriID);
         $this->db->where('aktiflik', 1);
         $this->db->order_by("id", "DESC");
-        return $this->db->count_all_results("blog");
+        $this->db->from('blog');
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        return $result[0]['allcount'];
     }
 
-    public function fetchKategoriBlog($limit, $start, $kategoriID)
+    public function fetchKategoriBlog($rowno, $rowperpage, $kategoriID)
     {
-        $this->db->limit($limit, $start);
+        $this->db->select('*');
         $this->db->where('kategori', $kategoriID);
         $this->db->where('aktiflik', 1);
         $this->db->order_by("id", "DESC");
-        $query = $this->db->get("blog");
-        if ($query->num_rows() > 0) :
-            foreach ($query->result() as $row) :
-                $data[] = $row;
-            endforeach;
-            return $data;
-        endif;
-        return false;
+        $this->db->from('blog');
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+
+        return $query->result_array();
     }
 
     public function getRastgeleBlog($limit){
