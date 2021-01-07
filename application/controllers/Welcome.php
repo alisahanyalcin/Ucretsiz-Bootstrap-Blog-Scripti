@@ -6,7 +6,7 @@ class Welcome extends CI_Controller {
         parent::__construct();
     }
 
-    public function index(){
+    public function index($rowno=0){
         $this->load->helper("ago");
         $resultSite = $this->db->get_where('sistem_ayarlari', ['id' => 1])->row_array();
         $data['title'] = $resultSite['site_adi']." - ".$resultSite['site_baslik'];
@@ -20,20 +20,29 @@ class Welcome extends CI_Controller {
         $data['description'] = $resultSite['site_aciklama'];
         $data['tags'] = $resultSite['site_anahtar_kelimeler'];
         $limit = $resultSite['random_sayfa_basi_blog'];
+        $rowperpage = $resultSite['sayfa_basi_blog'];
 
-        $config = array();
-        $config["base_url"] = base_url();
-        $config["total_rows"] = $this->UserGetModel->blog_count();
-        $config["per_page"] = $resultSite['sayfa_basi_blog'];
-        $config["uri_segment"] = 1;
+        if($rowno != 0){
+            $rowno = ($rowno-1) * $rowperpage;
+        }
+
+        $allcount = $this->UserGetModel->blog_count();
+        $users_record = $this->UserGetModel->fetch_blog($rowno, $rowperpage);
+
+        $config['base_url'] = base_url();
         $config['use_page_numbers'] = TRUE;
+        $config['total_rows'] = $allcount;
+        $config['per_page'] = $rowperpage;
+
         $this->pagination->initialize($config);
-        $page = ($this->uri->segment(1)) ? $this->uri->segment(1) : 0;
-        $data["results"] = $this->UserGetModel->fetch_blog($config["per_page"], $page);
-        $data["links"] = $this->pagination->create_links();
+
+        $data['pagination'] = $this->pagination->create_links();
+        $data['result'] = $users_record;
+        $data['row'] = $rowno;
+
         $data['getRastgeleBlog'] = $this->UserGetModel->getRastgeleBlog($limit);
         $data['getMenu'] = $this->UserGetModel->getMenu();
-            $data['getKategoriler'] = $this->UserGetModel->getKategoriler();
+        $data['getKategoriler'] = $this->UserGetModel->getKategoriler();
 
         $this->load->view('user/header', $data);
         $this->load->view('user/index');
@@ -65,6 +74,7 @@ class Welcome extends CI_Controller {
             $data['category'] = $detail['kategori'];
             $data['getRastgeleBlog'] = $this->UserGetModel->getRastgeleBlog($limit);
             $data['getMenu'] = $this->UserGetModel->getMenu();
+            $data['getKategoriler'] = $this->UserGetModel->getKategoriler();
 
             $data['yorumsay'] = $this->db->get_where('yorumlar', ['blog_id' => $detail['id'], 'durum' => 1])->num_rows();
             $data['getBlogYorum'] = $this->UserGetModel->getBlogYorum($detail['id']);
@@ -106,7 +116,7 @@ class Welcome extends CI_Controller {
         endif;
     }
 
-    public function kategori($url){
+    public function kategori($url, $rowno=0){
         $this->load->helper("ago");
         $resultDetail = $this->db->get_where('kategoriler', ['link' => htmlspecialchars($url)])->row_array();
         if ($resultDetail):
@@ -125,17 +135,27 @@ class Welcome extends CI_Controller {
             $data['tags'] = $resultDetail['anahtar_kelimeler'];
             $data['baslik'] = $resultDetail['adi'];
 
-            $config = array();
-            $config["base_url"] = base_url()."kategori/".$url."/";
-            $config["total_rows"] = $this->UserGetModel->KategoriBlogCount($resultDetail['id']);
-            $config["per_page"] = $resultSite['sayfa_basi_blog'];
-            $config["uri_segment"] = 3;
-            $config['use_page_numbers'] = TRUE;
-            $this->pagination->initialize($config);
-            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-            $data["results"] = $this->UserGetModel->fetchKategoriBlog($config["per_page"], $page, $resultDetail['id']);
-            $data["links"] = $this->pagination->create_links();
 
+            $rowperpage = $resultSite['sayfa_basi_blog'];
+
+            if($rowno != 0){
+                $rowno = ($rowno-1) * $rowperpage;
+            }
+
+            $allcount = $this->UserGetModel->KategoriBlogCount($resultDetail['id']);
+            $users_record = $this->UserGetModel->fetchKategoriBlog($rowno, $rowperpage, $resultDetail['id']);
+
+            $config['base_url'] = base_url("kategori/".$url."/");
+            $config['use_page_numbers'] = TRUE;
+            $config['total_rows'] = $allcount;
+            $config['per_page'] = $rowperpage;
+
+            $this->pagination->initialize($config);
+
+            $data['pagination'] = $this->pagination->create_links();
+            $data['result'] = $users_record;
+            $data['row'] = $rowno;
+            
             $data['getRastgeleBlog'] = $this->UserGetModel->getRastgeleBlog($limit);
             $data['getKategoriler'] = $this->UserGetModel->getKategoriler();
 
@@ -254,7 +274,7 @@ class Welcome extends CI_Controller {
         endif;
     }
 
-    public function arama(){
+    public function arama($rowno=0){
         $kelime = $this->input->get('s', true);
         $kelime = htmlspecialchars($kelime);
         if ($kelime):
@@ -274,16 +294,25 @@ class Welcome extends CI_Controller {
             $data['kelime'] = $kelime;
             $data['baslik'] = $kelime." için Arama Sonuçları";
 
-            $config = array();
-            $config["base_url"] = base_url('arama/'.$kelime);
-            $config["total_rows"] = $this->UserGetModel->blog_arama_count($kelime);
-            $config["per_page"] = 40;
-            $config["uri_segment"] = 1;
+            $rowperpage = $resultSite['sayfa_basi_blog'];
+
+            if($rowno != 0){
+                $rowno = ($rowno-1) * $rowperpage;
+            }
+
+            $allcount = $this->UserGetModel->blog_arama_count($kelime);
+            $users_record = $this->UserGetModel->fetch_arama_blog($kelime, $rowno, $rowperpage);
+
+            $config['base_url'] = base_url('arama/'.$kelime);
             $config['use_page_numbers'] = TRUE;
+            $config['total_rows'] = $allcount;
+            $config['per_page'] = $rowperpage;
+
             $this->pagination->initialize($config);
-            $page = ($this->uri->segment(1)) ? $this->uri->segment(1) : 0;
-            $data["results"] = $this->UserGetModel->fetch_arama_blog($kelime,$config["per_page"], $page);
-            //$data["links"] = $this->pagination->create_links();
+
+            $data['pagination'] = $this->pagination->create_links();
+            $data['result'] = $users_record;
+            $data['row'] = $rowno;
 
             $data['getRastgeleBlog'] = $this->UserGetModel->getRastgeleBlog($limit);
             $data['getMenu'] = $this->UserGetModel->getMenu();
