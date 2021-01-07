@@ -68,11 +68,27 @@
                         <div class="input-group">
                                 <input type="text" class="form-control" name="s" placeholder="Ara...">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-secondary" type="submit"><i class="las la-search"></i></button>
+                                    <button class="btn btn-primary" type="submit"><i class="las la-search"></i></button>
                                 </span>
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Kategoriler
+                </div>
+                <ul class="list-group list-group-flush">
+                    <?php if(is_array($getKategoriler) && count($getKategoriler) > 0):
+                        foreach ($getKategoriler as $rows) :
+                            ?>
+                            <li class="list-group-item">
+                                <a href="<?= base_url()."kategori/".$rows->link;?>">
+                                    <?= $rows->adi;?>
+                                </a>
+                            </li>
+                        <?php endforeach; endif; ?>
+                </ul>
             </div>
             <div class="card">
                 <div class="card-header">
